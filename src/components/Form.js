@@ -38,8 +38,6 @@ const Form = (props) => {
     if (name && email && password && passwordCheck) {
       if (password === passwordCheck) {
         setFormIsValid(true);
-      } else {
-        alert("Your both passwords are different");
       }
     } else {
       alert("All fields must be completed");
@@ -74,6 +72,9 @@ const Form = (props) => {
           value={passwordCheck}
           onChange={handlePasswordCheck}
         />
+        {passwordIsValid ? (
+          <p className="alert">Your both passwords are different.</p>
+        ) : null}
         <button onClick={handlePasswordIsValid} type="submit">
           Register
         </button>
