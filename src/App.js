@@ -3,6 +3,13 @@ import Form from "./components/Form";
 import Footer from "./components/Footer";
 import Results from "./components/Results";
 import { useState } from "react";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faEye,
+  faEyeDropper,
+  faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faEye, faEyeSlash, faEyeDropper);
 
 function App() {
   const [name, setName] = useState("");
@@ -11,6 +18,7 @@ function App() {
   const [passwordCheck, setPasswordCheck] = useState("");
   const [formIsValid, setFormIsValid] = useState(false);
   const [passwordIsValid, setPasswordIsValid] = useState(null);
+  const [closeEye, setCloseEye] = useState(false);
 
   return (
     <>
@@ -35,6 +43,8 @@ function App() {
           setPasswordCheck={setPasswordCheck}
           setFormIsValid={setFormIsValid}
           setPasswordIsValid={setPasswordIsValid}
+          closeEye={closeEye}
+          setCloseEye={setCloseEye}
         />
       )}
       <Footer />

@@ -1,3 +1,6 @@
+import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const Form = (props) => {
   const {
     name,
@@ -11,6 +14,8 @@ const Form = (props) => {
     setFormIsValid,
     passwordIsValid,
     setPasswordIsValid,
+    closeEye,
+    setCloseEye,
   } = props;
 
   const handleName = (event) => {
@@ -50,6 +55,16 @@ const Form = (props) => {
       setPasswordIsValid(null);
     }
   };
+  let hidePassword = "";
+  closeEye ? (hidePassword = "text") : (hidePassword = "password");
+  const handleCloseEye = () => {
+    if (closeEye) {
+      setCloseEye(false);
+    } else {
+      setCloseEye(true);
+    }
+    return hidePassword;
+  };
   return (
     <div className="formulaire">
       <h1>Create account</h1>
@@ -59,19 +74,49 @@ const Form = (props) => {
         <h2>Email</h2>
         <input type="email" value={email} onChange={handleEmail} />
         <h2>Password</h2>
-        <input
-          className={passwordIsValid}
-          type="password"
-          value={password}
-          onChange={handlePassword}
-        />
+        <div className="contentIcon">
+          <input
+            className={passwordIsValid}
+            type={hidePassword}
+            value={password}
+            onChange={handlePassword}
+          />
+          {closeEye ? (
+            <FontAwesomeIcon
+              onClick={handleCloseEye}
+              className="icon"
+              icon={faEyeSlash}
+            />
+          ) : (
+            <FontAwesomeIcon
+              onClick={handleCloseEye}
+              className="icon"
+              icon="eye"
+            />
+          )}
+        </div>
         <h2>Comfirm your password</h2>
-        <input
-          className={passwordIsValid}
-          type="password"
-          value={passwordCheck}
-          onChange={handlePasswordCheck}
-        />
+        <div className="contentIcon">
+          <input
+            className={passwordIsValid}
+            type={hidePassword}
+            value={passwordCheck}
+            onChange={handlePasswordCheck}
+          />
+          {closeEye ? (
+            <FontAwesomeIcon
+              onClick={handleCloseEye}
+              className="icon"
+              icon={faEyeSlash}
+            />
+          ) : (
+            <FontAwesomeIcon
+              onClick={handleCloseEye}
+              className="icon"
+              icon="eye"
+            />
+          )}
+        </div>
         {passwordIsValid ? (
           <p className="alert">Your both passwords are different.</p>
         ) : null}

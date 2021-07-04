@@ -27,6 +27,7 @@ button {
   font-size: 18px;
 }
 input {
+  width: 100%;
   background-color: bisque;
 }
 
@@ -74,4 +75,15 @@ footer {
     font-weight: bold;
     text-decoration: none;
   }
+}
+.contentIcon {
+  width: 100%;
+  position: relative;
+}
+.icon {
+  font-size: 20px;
+  position: absolute;
+  right: 4px;
+  top: 15px;
+  cursor: pointer;
 }
