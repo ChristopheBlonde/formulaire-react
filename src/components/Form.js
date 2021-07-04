@@ -9,6 +9,8 @@ const Form = (props) => {
     setPassword,
     setPasswordCheck,
     setFormIsValid,
+    passwordIsValid,
+    setPasswordIsValid,
   } = props;
 
   const handleName = (event) => {
@@ -33,10 +35,21 @@ const Form = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (password === passwordCheck) {
-      setFormIsValid(true);
+    if (name && email && password && passwordCheck) {
+      if (password === passwordCheck) {
+        setFormIsValid(true);
+      } else {
+        alert("Your both passwords are different");
+      }
     } else {
-      alert("Your both passwords are different");
+      alert("All fields must be completed");
+    }
+  };
+  const handlePasswordIsValid = () => {
+    if (!password || !passwordCheck || password !== passwordCheck) {
+      setPasswordIsValid("redBorder");
+    } else {
+      setPasswordIsValid(null);
     }
   };
   return (
@@ -48,14 +61,22 @@ const Form = (props) => {
         <h2>Email</h2>
         <input type="email" value={email} onChange={handleEmail} />
         <h2>Password</h2>
-        <input type="password" value={password} onChange={handlePassword} />
+        <input
+          className={passwordIsValid}
+          type="password"
+          value={password}
+          onChange={handlePassword}
+        />
         <h2>Comfirm your password</h2>
         <input
+          className={passwordIsValid}
           type="password"
           value={passwordCheck}
           onChange={handlePasswordCheck}
         />
-        <button type="submit">Register</button>
+        <button onClick={handlePasswordIsValid} type="submit">
+          Register
+        </button>
       </form>
     </div>
   );

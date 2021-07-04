@@ -10,6 +10,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [formIsValid, setFormIsValid] = useState(false);
+  const [passwordIsValid, setPasswordIsValid] = useState(null);
 
   return (
     <>
@@ -27,11 +28,13 @@ function App() {
           password={password}
           passwordCheck={passwordCheck}
           formIsValid={formIsValid}
+          passwordIsValid={passwordIsValid}
           setName={setName}
           setEmail={setEmail}
           setPassword={setPassword}
           setPasswordCheck={setPasswordCheck}
           setFormIsValid={setFormIsValid}
+          setPasswordIsValid={setPasswordIsValid}
         />
       )}
       <Footer />
